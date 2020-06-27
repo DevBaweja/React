@@ -1,0 +1,371 @@
+React is js library for building UI
+JS driven apps
+Components are building blocks
+
+React Components can be thought of as custom html elements
+Maintainable, Manageabe and Reusable
+
+Js Preprocessor of Babel is required
+react and react-dom
+react - It is logic to we need for creating these react components
+react-dom - Rendering this components to dom
+
+React components is just functions
+
+
+function Person(props){
+    return(
+        <div className="person">
+            <h1>{props.name}</h1>
+            <p>Age: {props.age}</p>
+            <p>Job: {props.job}</p>
+        </div>
+    )
+}
+
+Using expressions to retunr multi line code
+
+JSX
+
+ReactDOM.render(<Person name="" age="20" job="Teacher"/>, document.querySelector('selector'))
+
+ReactDOM.render(tag, element)
+
+It allow to render js function as components to real dom
+and treated as components part is taken care by React
+
+Wrapping into custom element which is treated as block
+
+props - Setting attr to custom element
+Simple contain attr
+
+{} to access expressions on js
+
+ReactDOM
+
+const app = (
+    <div>
+        <Person name="Adam" age="20" job="Teacher"/>
+        <Person name="Bob" age="22" job="Designer "/>
+    </div>
+)
+
+ReactDOM.render(app, document.querySelector('#app'))
+Render app must be single parent element
+This selecting of elements is called as hook
+
+Using only single render call to create Single Page Application
+
+UI States become difficult to handle with Vanilla JavaScript
+
+
+## About Course
+Basics
+Debugging
+Styling Components
+Components Deep Dive
+Life Cycle
+Https Request
+Routing
+Forms and Validation
+Redux (State Management Library)
+Authentication
+Testing
+Deploy
+Animating
+Nextjs
+Webpack
+
+We can also skip constructor functions in ESNext
+class Person{
+    constructor(){
+        this.name = 'Jane'
+    }
+    method(){
+
+    }
+}
+
+class Person{
+    name = 'Jane'
+    method = () =>{
+
+    }
+}
+
+### Create new react workflow
+
+npm i -g create-react-app
+create-react-app my-app
+npm start
+
+create-react-app my-app --script-version 1.1.5
+
+
+In index.js contain App component
+And App component contain nested component
+
+### Creating React Component
+
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+    render() {
+        return (
+            <div>
+                <h1>I'm React Component</h1>
+            </div>
+        );
+    }
+}
+
+export default App;
+
+
+import React from 'react';
+
+const app = () => {
+    return (
+        <div>
+            <h1>I'm React Component</h1> 
+        </div>
+    )
+}
+
+export default app;
+
+Simply function that return some jsx
+Or 
+Class extends Component
+
+JSX expression must have one parent element
+
+
+### Js Function and Comment
+JSX is converted to HTML using all of 
+createElement, setAttribute, classList.add, id
+All of DOM manipulating js functions
+
+React.createElement('div', {className: 'app'} ,child)
+
+Comment in JSX
+{/*
+
+*/}
+Using block so that /**/ is js comment can be used in jsx code
+
+
+### props
+Attr to pass data from template (jsx) to component
+As props argument with all attr of template
+
+const person = props => {
+    return (
+        <div class="person">
+            <h2 class="person__heading"> I'm Person </h2>
+            <ul class="person__list">
+                <li>Name: {props.name}</li>
+                <li>Age: {props.age}</li>
+                <li>Job: {props.job}</li>
+            </ul>
+        </div>
+    );
+};
+
+While using class based component
+this.props contain all the required data
+
+class App extends Component{
+    render(){
+        return(
+            <h1>Title: {this.props.title}</h1>
+        )
+    }
+}
+
+### props.children
+props.children is special reserved by react
+Content between tag 
+Any element between tag
+
+
+### State
+class App extends Component{
+
+    state = {
+        persons: [
+            { name: 'Jonas', age: 20, job: 'Teacher' },
+            { name: 'Jane', age: 12, job: 'Student' },
+            { name: ' Mark', age: 33, job: 'Designer' },
+        ],
+        index: 0
+    };
+}
+
+This here only work in component create by extends Component
+and not function constructor
+
+React hooks are used to maintain state in functional component
+
+Getting info from outside(template to Component)
+Sometime we want info to be inside component and change it from there 
+
+ie state is used which will then be change by another component
+And state of app remain at one same place
+
+Special in state is that if it change then DOM will be render and updated automatically
+
+### Adding Event Handler
+onclick is used in js
+onClick is used in jsx
+
+Add handler function as method to event
+onClick={this.eventHandler}
+
+Don't mutate this.state directly
+use this.setState
+which again only work for class App extends Component
+
+this.setState({ index: Math.floor(Math.random() * this.state.persons.length) });
+Merge state into previous state
+
+State and Props are only thing will change DOM
+
+this.setState() is only for Class based Component
+
+### States in Function based Component (React Hooks)
+
+const [state, setState] = useState(initialState)
+
+Work exactly same as this.setState
+Difference btw this.setState of class based component and setState of function component
+is this.setState merges oldState with newState
+setState overwrites oldState with newState
+
+Remember it return array and not object
+
+While using useState functional component must be captilized like class
+
+const [state, setState] = useState({
+    persons: [
+        { name: 'Jonas', age: 20, job: 'Teacher' },
+        { name: 'Jane', age: 12, job: 'Student' },
+        { name: ' Mark', age: 33, job: 'Designer' },
+    ],
+    index: 0,
+});
+
+setState({ persons: state.persons, index: Math.floor(Math.random() * state.persons.length) });
+
+Munally adding state variable again in setState
+Instead repeat useState into independent blocks
+const [PersonsState, setPersonsState] = useState({
+    persons: [
+        { name: 'Jonas', age: 20, job: 'Teacher' },
+        { name: 'Jane', age: 12, job: 'Student' },
+        { name: ' Mark', age: 33, job: 'Designer' },
+    ],
+});
+const [IndexState, setIndexState] = useState({
+    index: 0,
+});
+
+Also in case you only want to manage string, number or only one thing
+
+const [indexState, setIndexState] = useState(0);
+
+React Hooks mostly start with use
+useState to add state management
+
+### Stateless vs Stateful Component
+
+Stateful - Manages state
+    Either with class or functional component
+    They have internal logic
+    SMART Component or Container Component(as it contain state of app)
+    Usually made as class component
+
+Stateless - No internal state management
+    Create more of stateless component
+    DUMB Component
+    They mostly have no internal logic and only presentational components
+    They output in structured and configurable way
+    Usually made as functional component
+
+### Passing Method Ref btw Component
+
+Variables and Methods can be passed in btw component (Parent-Child) 
+Using Props
+
+ie Method Ref can be passed as attr into props
+
+This is used so that we can call method which might change state in another component
+which does not direct access to state or which should not have direct access to state
+
+### Passing argument with Methods
+
+We are trying to pass arguments from Parent to Child
+And still calling method as event in child component
+As Parent component contain arguments values and Child component
+is where function is called with preset arguments to change state
+
+To pass method with argument we can use bind
+then say (this,..args) which will return function with preset arguments
+
+Remember default passed parameter will be event
+<Person
+    click={switchPersonHandler}
+/>
+
+<Person
+    click={switchPersonHandler.bind(this,'Max')}
+/>
+
+Another way is to wrap the function and call required function within it
+
+<Person
+    click={(event) => switchPersonHandler('Jon')}
+/>
+
+onClick={props.click} in Person Component
+
+### Two way data binding
+
+Two way data binding is implemented by state / props
+
+Parent passes method to child component so that it will able to change state of Parent
+Child component changes state of parent component by ref method passed into props
+And child component is automatically updated by props values
+It will inturn implement two way data binding
+
+### Adding CSS
+
+Creating a css file and adding styles there
+then import '*.css' to component
+It is globally scoped
+
+ie why it is convenient to add class with component name to component itself
+
+const App = () => {
+    return (
+        <div className="App"></div>
+    )
+}
+
+Webpack allow to import css files to js files to basically import them
+In actual it will create style files
+
+### Inline styles
+
+const bg= {
+    backgroundColor: 'white',
+}
+const bg = {
+    'background-color': 'white'
+}
+
+<div style={bg}></div>
+Inline style ensure scope difficult
+However we can use JS variable to dermine styles easily in that case
+Or we can actually easily add classes to JSX/template

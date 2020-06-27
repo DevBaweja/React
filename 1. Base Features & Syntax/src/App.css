@@ -1,0 +1,15 @@
+.App {
+    font-size: 1.8rem;
+}
+.btn {
+    padding: 1rem;
+    margin: 1rem;
+    border: 0;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+}
+.persons {
+    display: flex;
+    align-items: center;
+}

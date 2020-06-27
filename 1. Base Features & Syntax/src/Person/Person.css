@@ -1,0 +1,17 @@
+.Person {
+    border: 1px solid #eee;
+    box-shadow: 0 2px 2px #ccc;
+    width: 20rem;
+    padding: 2rem;
+    margin: 1rem;
+}
+.Person__heading {
+    margin: 1rem;
+}
+.Person__list {
+    list-style: none;
+    margin: 1rem;
+}
+.Person__list li {
+    padding: 0.2rem;
+}
