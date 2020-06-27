@@ -1,0 +1,4 @@
+### Render content dynamically
+
+Using ternary operators
+Create function that return JSX conditional
